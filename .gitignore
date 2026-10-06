@@ -1,0 +1,5 @@
+.DS_Store
+# private working files (CV drafts, exports) - not for the public repo
+references/
+.claude/
+.vercel/

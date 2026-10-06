@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,500;0,700;1,400&amp;display=swap">
+<script src="./image-slot.js"></script>
+<style>
+  :root { --light-gray: #E9E9E9; }
+  html, body { margin: 0; padding: 0; background: #f7f7f7; }
+  * { -webkit-font-smoothing: antialiased; }
+  a { color: #383838; text-decoration-color: #c9a06a; text-underline-offset: 3px; }
+  a:hover { color: #4f2b0a; text-decoration-color: #4f2b0a; }
+  ::selection { background: rgba(253,160,7,.28); }
+  button:focus-visible, a:focus-visible { outline: 2px solid #4f2b0a; outline-offset: 2px; }
+  @keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  @keyframes veilIn { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</helmet>
+
+<div style="position:relative;min-height:100vh;overflow-x:hidden;background:#f7f7f7;font-family:Karla,sans-serif;color:#383838;--active:{{ active }};--docw:{{ docw }};--step:{{ step }};--pat:{{ pat }};--stageh:{{ stageH }};--tabgap:{{ tabgap }};--padtop:{{ padtop }}">
+
+  <div style="position:relative;z-index:1;padding:var(--padtop,104px) 0 148px">
+    <div style="position:relative;height:var(--stageh,900px)">
+    <div ref="{{ rowRef }}" data-track="1" style="position:absolute;left:0;right:0;top:0;bottom:0;transform:{{ trackX }};transition:transform .44s cubic-bezier(.22,.61,.36,1)">
+
+      <article data-i="0" onClick="{{ pick }}" data-screen-label="AI-Driven Design System Workflow" style="position:absolute;top:0;left:calc(50% - var(--docw,595px)/2);width:var(--docw,595px);will-change:transform;transform:{{ t0 }};box-sizing:border-box;overflow:hidden;background:#fff;border-radius:8px;box-shadow:inset 0 0 0 1px var(--light-gray);transition:opacity .25s ease, box-shadow .25s ease;padding:24px 32px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span data-field="title" style="font-size:17px;font-weight:700;line-height:1.1;color:#383838">AI-Driven Design System Workflow</span>
+          <span data-field="year" style="font-size:17px;font-weight:400;line-height:1.2;color:#a0a0a0">2026</span>
+          <span data-field="company" style="align-self:flex-start;margin-top:6px;padding:2px 6px;background:#f9f8f8;font-size:12px;line-height:15px;color:#383838">Dynamic Yield / Mastercard</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">The Problem</span>
+          <p data-field="summary" style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a"><strong style="color:#383838">1. Prototyping.</strong> Figma prototyping hits a ceiling — especially when designing an AI-generated content based product. No real data, hard to reproduce actual agent behavior. Hard to test ideas before they're built.</p>
+          <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a"><strong style="color:#383838">2. Design system drift.</strong> The system changes fast, with several dev teams building against it in parallel. Keeping it updated and reachable for every dev felt like a constant struggle.</p>
+          <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a"><strong style="color:#383838">3. Dev velocity.</strong> Devs are using LLMs to generate UI directly. They need the quickest path from the Figma design system to generated UI.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">My Role</span>
+          <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">As the team's Claude Code ambassador, I have early access and build tools myself — directly in a code repository, not just Figma. I set up and maintain the design repo the dev team and other designers now work from.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">What I Built</span>
+          <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a"><strong style="color:#383838">1. GitHub Repository</strong> — A single place for the design system documentation, prototypes, and the skills below. It lives alongside the product repository, which gives me access to real product data and lets prototypes run against the real agents skills. The dev team and other designers work from it directly.</p>
+          <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a"><strong style="color:#383838">2. Documentation Skill</strong> — Generates component docs from the Figma design system, written for both team members and AI agents to read. Organizes components in a consistent pattern, so the design system stays uniform even with multiple designers contributing. The base the other two skills build on.</p>
+          <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a"><strong style="color:#383838">3. Sync Skill</strong> — Keeps the design system and repository aligned as components change, so devs generating UI with LLMs are always pulling current components.</p>
+          <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a"><strong style="color:#383838">4. Prototype &amp; Spec Skill</strong> — Turns the design system into working, interactive prototypes and dev specs, simulating real agent content. Replaces static Figma flows with something devs and stakeholders can actually interact with.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">Impact</span>
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">
+            <li><strong style="color:#383838">Testing ideas that were previously hard to explore in Figma</strong> — closer to real interactions, real logic, real LLM content</li>
+            <li><strong style="color:#383838">Sharing working prototypes with CS and customers</strong>, not just static flows</li>
+            <li><strong style="color:#383838">Documenting new features faster</strong> through generated spec files</li>
+            <li><strong style="color:#383838">Fewer dev errors</strong>, since specs come from the design system rather than manual translation</li>
+          </ul>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">Adoption</span>
+          <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">The repository became a shared source for the team. Devs reference and build on it directly.</p>
+        </div>
+      </article>
+
+      <article data-i="1" onClick="{{ pick }}" data-screen-label="Journey Orchestration" style="position:absolute;top:0;left:calc(50% - var(--docw,595px)/2);width:var(--docw,595px);will-change:transform;transform:{{ t1 }};box-sizing:border-box;overflow:hidden;background:#fff;border-radius:8px;box-shadow:inset 0 0 0 1px var(--light-gray);transition:opacity .25s ease, box-shadow .25s ease;padding:0 0 24px;display:flex;flex-direction:column;gap:14px">
+        <div data-bg-image="1" style="flex:0 0 auto;width:100%;background:#f9f8f8;border-bottom:1px solid var(--light-gray);overflow:hidden">
+          <img src="assets/journey-orchestration-header.png" alt="Journey Orchestration flow builder" style="display:block;width:100%;height:auto;object-fit:cover;object-position:left top">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;padding:24px 32px 0">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+          <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+            <span data-field="title" style="font-size:17px;font-weight:700;line-height:1.1;color:#383838">Journey Orchestration Redesign</span>
+            <span data-field="year" style="font-size:17px;font-weight:400;line-height:1.2;color:#a0a0a0">2024</span>
+            <span data-field="company" style="align-self:flex-start;margin-top:6px;padding:2px 6px;background:#f9f8f8;font-size:12px;line-height:15px;color:#383838">Dynamic Yield</span>
+          </div>
+          <div style="display:flex;gap:8px;flex-shrink:0">
+          <button data-i="1" data-embed="case-study" onClick="{{ openModal }}" style="display:flex;align-items:center;gap:6px;border:1px solid #4f2b0a;border-radius:6px;background:#4f2b0a;padding:7px 12px;font-family:Karla,sans-serif;font-size:12px;font-weight:700;line-height:1;color:#fff;cursor:pointer" style-hover="background:#67370d">
+            <span>Case study</span>
+            <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8 L8 2 M4 2 H8 V6" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+          <button data-i="1" data-embed="prototype" onClick="{{ openModal }}" style="display:flex;align-items:center;gap:6px;border:1px solid #4f2b0a;border-radius:6px;background:transparent;padding:7px 12px;font-family:Karla,sans-serif;font-size:12px;font-weight:700;line-height:1;color:#4f2b0a;cursor:pointer" style-hover="background:rgba(79,43,10,.08)">
+            <span>Prototype</span>
+            <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8 L8 2 M4 2 H8 V6" fill="none" stroke="#4f2b0a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">Problem</span>
+          <p data-field="summary" style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">Tool lacked multi-step capabilities, native channels, and basic triggers. Customers turned to other tools.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">My Role</span>
+          <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">Led end-to-end redesign — research, UX, UI, dev handoff. Partnered with PMs and leadership on scope. Introduced UI language now used platform-wide.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">Process</span>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">Competitor's tools were feature-rich but complex. Bet: win on experience, not feature count.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:12px;font-weight:400;line-height:1;color:#8f8f8f">Design principles</span>
+            <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">
+              <li>Canvas reads as a narrative — full journey clear at a glance</li>
+              <li>Critical data surfaced immediately (what's sent, when)</li>
+              <li>Always show the relevant next steps — no visual overload</li>
+              <li>Complex workflow, simple to use</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">Iteration</span>
+          <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">Technical limits pushed the design from free-form to structured flows — predefined combinations instead of open canvas.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">Outcome</span>
+          <p style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">Strong early-access feedback. Existing users adapted the change and churn stopped.</p>
+        </div>
+
+        </div>
+      </article>
+
+      <article data-i="2" onClick="{{ pick }}" data-screen-label="Platform Agents" style="position:absolute;top:0;left:calc(50% - var(--docw,595px)/2);width:var(--docw,595px);will-change:transform;transform:{{ t2 }};box-sizing:border-box;overflow:hidden;background:#fff;border-radius:8px;box-shadow:inset 0 0 0 1px var(--light-gray);transition:opacity .25s ease, box-shadow .25s ease;padding:24px 32px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span data-field="title" style="font-size:17px;font-weight:700;line-height:1.1;color:#383838">Platform Agents</span>
+          <span data-field="year" style="font-size:17px;font-weight:400;line-height:1.2;color:#a0a0a0">2025 - Today</span>
+          <span data-field="company" style="align-self:flex-start;margin-top:6px;padding:2px 6px;background:#f9f8f8;font-size:12px;line-height:15px;color:#383838">Dynamic Yield / Mastercard</span>
+        </div>
+        <p data-field="summary" style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">A chat interface layered on top of Dynamic Yield's platform. It knows where you are in the platform and helps with the task at hand. Five agents handle code generation, template design, analytics reporting, knowledge base articles, and more.</p>
+        <p data-field="summary" style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">I've owned this project from day zero — every design decision, from UI details to product strategy, has run through me.</p>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">My Role</span>
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">
+            <li>Leading the design of the Platform Agents group.</li>
+            <li>Working together with the Director on the design strategy of the product</li>
+            <li>Working with all the PMs and their dev teams</li>
+            <li>Overseeing work by Junior UX for smaller tasks</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">Prototype</span>
+          <div style="position:relative;width:100%;aspect-ratio:534 / 311;border-radius:6px;overflow:hidden;background:#f1efef">
+            <image-slot id="doc-platform-agents" shape="rect" src="assets/platform-agents-flow.png" placeholder="Drop the Platform Agents flow"></image-slot>
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.45);pointer-events:none"></div>
+            <button data-i="2" onClick="{{ openModal }}" title="Open the prototype" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(0,0,0,.25);cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:#fff">
+              <svg width="14" height="16" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 1.6 L13 8 L1 14.4 Z" fill="#383838"></path></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article data-i="3" onClick="{{ pick }}" data-screen-label="CV" style="position:absolute;top:0;left:calc(50% - var(--docw,595px)/2);width:var(--docw,595px);will-change:transform;transform:{{ t3 }};box-sizing:border-box;overflow:hidden;background:#fff;border-radius:8px;box-shadow:inset 0 0 0 1px var(--light-gray);transition:opacity .25s ease, box-shadow .25s ease;padding:24px 32px 32px;display:flex;flex-direction:column;gap:16px">
+        <span data-field="title" style="font-size:17px;font-weight:700;line-height:1.1;color:#383838">CV</span>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.3;color:#383838">2022 - Today:  Mastercard / Dynamic Yield</span>
+          <span style="font-size:14px;font-weight:400;line-height:1.4;color:#8f8f8f">Senior UX Designer , leading design for the Platform AI Agents Group</span>
+          <ul style="margin:4px 0 0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">
+            <li>Leading the design of the Platform Agents group.</li>
+            <li>Led the design for multiple groups, including the FI Vertical, Journey Orchestration Group, AI Shopping Assistant, defining products and shaping end-to-end user experiences from the ground up.</li>
+            <li>Owned the end-to-end redesign of a strategic Journey Orchestration tool: collecting customer feedback, conducting UX research, and working closely with PMs and leadership, while introducing a refreshed, cohesive UI language across the platform.</li>
+          </ul>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.3;color:#383838">2020 - 2022:  Wix</span>
+          <span style="font-size:14px;font-weight:400;line-height:1.4;color:#8f8f8f">UX Designer in the Editor Group</span>
+          <ul style="margin:4px 0 0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">
+            <li>UX Designer in a team responsible for creating a new web application builder and integrating it into the Wix ecosystem.</li>
+          </ul>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.3;color:#383838">2014 - 2020: Klear (Meltwater)</span>
+          <span style="font-size:14px;font-weight:400;line-height:1.4;color:#8f8f8f">UX Designer (Full-stack Design Role)</span>
+          <ul style="margin:4px 0 0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">
+            <li>Joined as the first &amp; sole designer, full ownership on: UX, UI, branding and marketing design.</li>
+            <li>Led creation and implementation of a design system and a rebranding process.</li>
+            <li>Central contributor to various products such as: CRM, Analytics Dashboard, Profile Pages and Web Messenger.</li>
+            <li>Worked closely with the founders, tech, sales, customer success and marketing teams, on-site and remote.</li>
+            <li>Implemented designs in Angular and React environments using CSS, SCSS, HTML and JavaScript.</li>
+          </ul>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.3;color:#383838">Freelance Design &amp; Illustration</span>
+          <ul style="margin:4px 0 0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">
+            <li>Web, product and branding design for Notewand.com, a medical AI tool.</li>
+            <li>Web, print, brand, and book design for pigumim.org.il, a political-philosophy magazine.</li>
+            <li>Illustration and art for: Haaretz, Eiynaim, Israeli National Library, Haifa City Museum and more.</li>
+          </ul>
+        </div>
+
+        <div style="height:1px;background:var(--light-gray)"></div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">Skills</span>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font-size:14px;font-weight:700;line-height:1.3;color:#383838">Tools</span>
+            <span style="font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">Figma, Adobe suite, HTML&amp;CSS, JavaScript, AI platforms (Claude Code, Codex, Cursor, v0, etc.)</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font-size:14px;font-weight:700;line-height:1.3;color:#383838">Professional Tools</span>
+            <span style="font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">UX, UI, Wireframing, prototyping, design &amp; users research, storyboarding, illustration, animation</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font-size:14px;font-weight:700;line-height:1.3;color:#383838">Education</span>
+            <span style="font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">MA in Visual Communication: Weißensee KH-Berlin, Germany</span>
+          </div>
+        </div>
+      </article>
+
+      <article data-i="4" onClick="{{ pick }}" data-screen-label="FI Vertical" style="position:absolute;top:0;left:calc(50% - var(--docw,595px)/2);width:var(--docw,595px);will-change:transform;transform:{{ t4 }};box-sizing:border-box;overflow:hidden;background:#fff;border-radius:8px;box-shadow:inset 0 0 0 1px var(--light-gray);transition:opacity .25s ease, box-shadow .25s ease;padding:24px 32px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span data-field="title" style="font-size:17px;font-weight:700;line-height:1.1;color:#383838">FI Vertical</span>
+          <span data-field="year" style="font-size:17px;font-weight:400;line-height:1.2;color:#a0a0a0">2024</span>
+          <span data-field="company" style="align-self:flex-start;margin-top:6px;padding:2px 6px;background:#f9f8f8;font-size:12px;line-height:15px;color:#383838">Dynamic Yield</span>
+        </div>
+        <p data-field="summary" style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">Personalization for financial institutions — defining the product and shaping the end-to-end user experience from the ground up.</p>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">My Role</span>
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">
+            <li>Add the write-up for this project here.</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">Prototype</span>
+          <div style="position:relative;width:100%;aspect-ratio:534 / 311;border-radius:6px;overflow:hidden;background:#f1efef">
+            <image-slot id="doc-fi-vertical" shape="rect" placeholder="Drop a screenshot of the FI Vertical"></image-slot>
+            <button data-i="4" onClick="{{ openModal }}" title="Open" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(0,0,0,.25);cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:#fff">
+              <svg width="14" height="16" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 1.6 L13 8 L1 14.4 Z" fill="#383838"></path></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article data-i="5" onClick="{{ pick }}" data-screen-label="Themed Color Picker" style="position:absolute;top:0;left:calc(50% - var(--docw,595px)/2);width:var(--docw,595px);will-change:transform;transform:{{ t5 }};box-sizing:border-box;overflow:hidden;background:#fff;border-radius:8px;box-shadow:inset 0 0 0 1px var(--light-gray);transition:opacity .25s ease, box-shadow .25s ease;padding:24px 32px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span data-field="title" style="font-size:17px;font-weight:700;line-height:1.1;color:#383838">Themed Color Picker</span>
+          <span data-field="year" style="font-size:17px;font-weight:400;line-height:1.2;color:#a0a0a0">2020 - 2022</span>
+          <span data-field="company" style="align-self:flex-start;margin-top:6px;padding:2px 6px;background:#f9f8f8;font-size:12px;line-height:15px;color:#383838">Wix</span>
+        </div>
+        <p data-field="summary" style="margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">A color picker that keeps a site's theme intact while letting users go off-palette when they need to.</p>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">My Role</span>
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">
+            <li>Add the write-up for this project here.</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">Prototype</span>
+          <div style="position:relative;width:100%;aspect-ratio:534 / 311;border-radius:6px;overflow:hidden;background:#f1efef">
+            <image-slot id="doc-themed-color-picker" shape="rect" placeholder="Drop a screenshot of the color picker"></image-slot>
+            <button data-i="5" onClick="{{ openModal }}" title="Open" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(0,0,0,.25);cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:#fff">
+              <svg width="14" height="16" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 1.6 L13 8 L1 14.4 Z" fill="#383838"></path></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article data-i="6" onClick="{{ pick }}" data-screen-label="Design &amp; Illustration" style="position:absolute;top:0;left:calc(50% - var(--docw,595px)/2);width:var(--docw,595px);will-change:transform;transform:{{ t6 }};box-sizing:border-box;overflow:hidden;background:#fff;border-radius:8px;box-shadow:inset 0 0 0 1px var(--light-gray);transition:opacity .25s ease, box-shadow .25s ease;padding:24px 32px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span data-field="title" style="font-size:17px;font-weight:700;line-height:1.1;color:#383838">Design &amp; Illustration</span>
+          <span data-field="year" style="font-size:17px;font-weight:400;line-height:1.2;color:#a0a0a0">Ongoing</span>
+          <span data-field="company" style="align-self:flex-start;margin-top:6px;padding:2px 6px;background:#f9f8f8;font-size:12px;line-height:15px;color:#383838">Freelance</span>
+        </div>
+        <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;letter-spacing:-0.491px;color:#4f2b0a">
+          <li>Web, product and branding design for Notewand.com, a medical AI tool.</li>
+          <li>Web, print, brand, and book design for pigumim.org.il, a political-philosophy magazine.</li>
+          <li>Illustration and art for: Haaretz, Eiynaim, Israeli National Library, Haifa City Museum and more.</li>
+        </ul>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;line-height:1.5;color:#383838">Selected work</span>
+          <div style="position:relative;width:100%;aspect-ratio:534 / 311;border-radius:6px;overflow:hidden;background:#f1efef">
+            <image-slot id="doc-design-illustration" shape="rect" placeholder="Drop an illustration"></image-slot>
+            <button data-i="6" onClick="{{ openModal }}" title="Open" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(0,0,0,.25);cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:#fff">
+              <svg width="14" height="16" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 1.6 L13 8 L1 14.4 Z" fill="#383838"></path></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <div data-pat="1" style="position: absolute; left: 0; top: 0; width: 100vw; height: 100vh; z-index: 2; pointer-events: none; overflow: hidden; opacity: 0.05; transform: {{ patX }}">
+        <div style="position:absolute;left:-25%;top:-25%;width:150%;height:150%;display:flex;filter:blur(110px)">
+          <div style="flex:1;background:#fda007"></div>
+          <div style="flex:1;background:#328208"></div>
+          <div style="flex:1;background:#fb3d09"></div>
+          <div style="flex:1;background:#fd5378"></div>
+          <div style="flex:1;background:#61467d"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <button onClick="{{ prev }}" title="Previous project" style="position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:8;width:50px;height:50px;border:none;border-radius:60px;background:rgba(245,245,245,.8);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:{{ prevOp }};transition:opacity .2s" style-hover="background:rgba(255,255,255,.95)">
+    <span style="width:26px;height:26px;border-radius:6px;background:#f1efef;box-shadow:inset 0 0 0 1px #c7c7c7, 0 4px 4px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center">
+      <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 2 L4 8 L10 14" fill="none" stroke="#383838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </span>
+  </button>
+
+  <button onClick="{{ next }}" title="Next project" style="position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:8;width:50px;height:50px;border:none;border-radius:60px;background:rgba(245,245,245,.8);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:{{ nextOp }};transition:opacity .2s" style-hover="background:rgba(255,255,255,.95)">
+    <span style="width:26px;height:26px;border-radius:6px;background:#f1efef;box-shadow:inset 0 0 0 1px #c7c7c7, 0 4px 4px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center">
+      <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 2 L12 8 L6 14" fill="none" stroke="#383838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </span>
+  </button>
+
+  <div style="position: fixed; left: 24px; top: 24px; z-index: 9; width: 264px; max-width: calc(100vw - 48px); box-sizing: border-box; border-radius: 8px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: inset 0 0 0 1px #383838, 0 0 4px rgba(0,0,0,.15); padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; background-color: #FFFFFF4D">
+    <span style="font-size:17px;font-weight:700;line-height:1.1;color:#383838">Ido Back, UX, 🎉</span>
+    <span style="font-size:12px;font-weight:400;line-height:1.35;color:#383838">Senior UX Designer with 12 years experience</span>
+    <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-start">
+      <a href="mailto:backido@gmail.com" style="font-size:14px;font-weight:700;line-height:1.2">backido@gmail.com</a>
+      <a href="tel:+972547797753" style="font-size:14px;font-weight:700;line-height:1.2">054-7797753</a>
+    </div>
+  </div>
+
+  <nav ref="{{ navRef }}" style="position:fixed;left:0;right:0;bottom:0;z-index:9;height:112px;overflow:hidden;box-sizing:border-box;background:linear-gradient(180deg, rgba(247,247,247,0) 0, rgba(247,247,247,.72) 26%, #f7f7f7 40%, #f7f7f7 100%);">
+    <button data-i="0" onClick="{{ select }}" style="position:absolute;bottom:20px;left:50%;width:150px;height:48px;border:none;border-radius:8px;background:transparent;padding:8px 12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-family:Karla,sans-serif;color:#4f2b0a;transition:transform .44s cubic-bezier(.22,.61,.36,1), width .44s cubic-bezier(.22,.61,.36,1), background .2s" style-hover="background:transparent">
+      <div data-frame="1" style="position:absolute;left:-4px;top:-4px;right:-4px;bottom:-4px;border-radius:11px;overflow:hidden;pointer-events:none;opacity:{{ s0 }};transition:opacity .3s;display:flex">
+        <div style="flex:1;background:#fda007"></div>
+        <div style="flex:1;background:#328208"></div>
+        <div style="flex:1;background:#fb3d09"></div>
+        <div style="flex:1;background:#fd5378"></div>
+        <div style="flex:1;background:#61467d"></div>
+      </div>
+      <div data-surface="1" style="position:absolute;inset:0;border-radius:8px;pointer-events:none;background:rgba(236,235,235,.8);backdrop-filter:blur(36px);-webkit-backdrop-filter:blur(36px);box-shadow:inset 0 0 0 .5px rgb(255,255,255), 0 0 8px rgba(0,0,0,.06);transition:background .2s"></div>
+      <span data-mirror="title" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:700;line-height:16px;white-space:nowrap;color:#4f2b0a">Agents Repository</span>
+      <span data-mirror="company" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:400;line-height:16px;white-space:nowrap;color:#4f2b0a">Dynamic Yield</span>
+    </button>
+    <button data-i="1" onClick="{{ select }}" style="position:absolute;bottom:20px;left:50%;width:150px;height:48px;border:none;border-radius:8px;background:transparent;padding:8px 12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-family:Karla,sans-serif;color:#4f2b0a;transition:transform .44s cubic-bezier(.22,.61,.36,1), width .44s cubic-bezier(.22,.61,.36,1), background .2s" style-hover="background:transparent">
+      <div data-frame="1" style="position:absolute;left:-4px;top:-4px;right:-4px;bottom:-4px;border-radius:11px;overflow:hidden;pointer-events:none;opacity:{{ s1 }};transition:opacity .3s;display:flex">
+        <div style="flex:1;background:#fda007"></div>
+        <div style="flex:1;background:#328208"></div>
+        <div style="flex:1;background:#fb3d09"></div>
+        <div style="flex:1;background:#fd5378"></div>
+        <div style="flex:1;background:#61467d"></div>
+      </div>
+      <div data-surface="1" style="position:absolute;inset:0;border-radius:8px;pointer-events:none;background:rgba(236,235,235,.8);backdrop-filter:blur(36px);-webkit-backdrop-filter:blur(36px);box-shadow:inset 0 0 0 .5px rgb(255,255,255), 0 0 8px rgba(0,0,0,.06);transition:background .2s"></div>
+      <span data-mirror="title" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:700;line-height:16px;white-space:nowrap;color:#4f2b0a">Journey Orchestration</span>
+      <span data-mirror="company" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:400;line-height:16px;white-space:nowrap;color:#4f2b0a">Dynamic Yield</span>
+    </button>
+    <button data-i="2" onClick="{{ select }}" style="position:absolute;bottom:20px;left:50%;width:150px;height:48px;border:none;border-radius:8px;background:transparent;padding:8px 12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-family:Karla,sans-serif;color:#4f2b0a;transition:transform .44s cubic-bezier(.22,.61,.36,1), width .44s cubic-bezier(.22,.61,.36,1), background .2s" style-hover="background:transparent">
+      <div data-frame="1" style="position:absolute;left:-4px;top:-4px;right:-4px;bottom:-4px;border-radius:11px;overflow:hidden;pointer-events:none;opacity:{{ s2 }};transition:opacity .3s;display:flex">
+        <div style="flex:1;background:#fda007"></div>
+        <div style="flex:1;background:#328208"></div>
+        <div style="flex:1;background:#fb3d09"></div>
+        <div style="flex:1;background:#fd5378"></div>
+        <div style="flex:1;background:#61467d"></div>
+      </div>
+      <div data-surface="1" style="position:absolute;inset:0;border-radius:8px;pointer-events:none;background:rgba(236,235,235,.8);backdrop-filter:blur(36px);-webkit-backdrop-filter:blur(36px);box-shadow:inset 0 0 0 .5px rgb(255,255,255), 0 0 8px rgba(0,0,0,.06);transition:background .2s"></div>
+      <span data-mirror="title" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:700;line-height:16px;white-space:nowrap;color:#4f2b0a">Platform Agents</span>
+      <span data-mirror="company" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:400;line-height:16px;white-space:nowrap;color:#4f2b0a">Dynamic Yield</span>
+    </button>
+    <button data-i="3" onClick="{{ select }}" style="position:absolute;bottom:20px;left:50%;width:150px;height:48px;border:none;border-radius:8px;background:transparent;padding:8px 12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-family:Karla,sans-serif;color:#4f2b0a;transition:transform .44s cubic-bezier(.22,.61,.36,1), width .44s cubic-bezier(.22,.61,.36,1), background .2s" style-hover="background:transparent">
+      <div data-frame="1" style="position:absolute;left:-4px;top:-4px;right:-4px;bottom:-4px;border-radius:11px;overflow:hidden;pointer-events:none;opacity:{{ s3 }};transition:opacity .3s;display:flex">
+        <div style="flex:1;background:#fda007"></div>
+        <div style="flex:1;background:#328208"></div>
+        <div style="flex:1;background:#fb3d09"></div>
+        <div style="flex:1;background:#fd5378"></div>
+        <div style="flex:1;background:#61467d"></div>
+      </div>
+      <div data-surface="1" style="position:absolute;inset:0;border-radius:8px;pointer-events:none;background:rgba(236,235,235,.8);backdrop-filter:blur(36px);-webkit-backdrop-filter:blur(36px);box-shadow:inset 0 0 0 .5px rgb(255,255,255), 0 0 8px rgba(0,0,0,.06);transition:background .2s"></div>
+      <span data-mirror="title" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:700;line-height:16px;white-space:nowrap;color:#4f2b0a">CV</span>
+    </button>
+    <button data-i="4" onClick="{{ select }}" style="position:absolute;bottom:20px;left:50%;width:150px;height:48px;border:none;border-radius:8px;background:transparent;padding:8px 12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-family:Karla,sans-serif;color:#4f2b0a;transition:transform .44s cubic-bezier(.22,.61,.36,1), width .44s cubic-bezier(.22,.61,.36,1), background .2s" style-hover="background:transparent">
+      <div data-frame="1" style="position:absolute;left:-4px;top:-4px;right:-4px;bottom:-4px;border-radius:11px;overflow:hidden;pointer-events:none;opacity:{{ s4 }};transition:opacity .3s;display:flex">
+        <div style="flex:1;background:#fda007"></div>
+        <div style="flex:1;background:#328208"></div>
+        <div style="flex:1;background:#fb3d09"></div>
+        <div style="flex:1;background:#fd5378"></div>
+        <div style="flex:1;background:#61467d"></div>
+      </div>
+      <div data-surface="1" style="position:absolute;inset:0;border-radius:8px;pointer-events:none;background:rgba(236,235,235,.8);backdrop-filter:blur(36px);-webkit-backdrop-filter:blur(36px);box-shadow:inset 0 0 0 .5px rgb(255,255,255), 0 0 8px rgba(0,0,0,.06);transition:background .2s"></div>
+      <span data-mirror="title" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:700;line-height:16px;white-space:nowrap;color:#4f2b0a">FI Vertical</span>
+      <span data-mirror="company" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:400;line-height:16px;white-space:nowrap;color:#4f2b0a">Dynamic Yield</span>
+    </button>
+    <button data-i="5" onClick="{{ select }}" style="position:absolute;bottom:20px;left:50%;width:150px;height:48px;border:none;border-radius:8px;background:transparent;padding:8px 12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-family:Karla,sans-serif;color:#4f2b0a;transition:transform .44s cubic-bezier(.22,.61,.36,1), width .44s cubic-bezier(.22,.61,.36,1), background .2s" style-hover="background:transparent">
+      <div data-frame="1" style="position:absolute;left:-4px;top:-4px;right:-4px;bottom:-4px;border-radius:11px;overflow:hidden;pointer-events:none;opacity:{{ s5 }};transition:opacity .3s;display:flex">
+        <div style="flex:1;background:#fda007"></div>
+        <div style="flex:1;background:#328208"></div>
+        <div style="flex:1;background:#fb3d09"></div>
+        <div style="flex:1;background:#fd5378"></div>
+        <div style="flex:1;background:#61467d"></div>
+      </div>
+      <div data-surface="1" style="position:absolute;inset:0;border-radius:8px;pointer-events:none;background:rgba(236,235,235,.8);backdrop-filter:blur(36px);-webkit-backdrop-filter:blur(36px);box-shadow:inset 0 0 0 .5px rgb(255,255,255), 0 0 8px rgba(0,0,0,.06);transition:background .2s"></div>
+      <span data-mirror="title" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:700;line-height:16px;white-space:nowrap;color:#4f2b0a">Themed Color Picker</span>
+      <span data-mirror="company" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:400;line-height:16px;white-space:nowrap;color:#4f2b0a">Wix</span>
+    </button>
+    <button data-i="6" onClick="{{ select }}" style="position:absolute;bottom:20px;left:50%;width:150px;height:48px;border:none;border-radius:8px;background:transparent;padding:8px 12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-family:Karla,sans-serif;color:#4f2b0a;transition:transform .44s cubic-bezier(.22,.61,.36,1), width .44s cubic-bezier(.22,.61,.36,1), background .2s" style-hover="background:transparent">
+      <div data-frame="1" style="position:absolute;left:-4px;top:-4px;right:-4px;bottom:-4px;border-radius:11px;overflow:hidden;pointer-events:none;opacity:{{ s6 }};transition:opacity .3s;display:flex">
+        <div style="flex:1;background:#fda007"></div>
+        <div style="flex:1;background:#328208"></div>
+        <div style="flex:1;background:#fb3d09"></div>
+        <div style="flex:1;background:#fd5378"></div>
+        <div style="flex:1;background:#61467d"></div>
+      </div>
+      <div data-surface="1" style="position:absolute;inset:0;border-radius:8px;pointer-events:none;background:rgba(236,235,235,.8);backdrop-filter:blur(36px);-webkit-backdrop-filter:blur(36px);box-shadow:inset 0 0 0 .5px rgb(255,255,255), 0 0 8px rgba(0,0,0,.06);transition:background .2s"></div>
+      <span data-mirror="title" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:700;line-height:16px;white-space:nowrap;color:#4f2b0a">Design &amp; Illustration</span>
+      <span data-mirror="company" style="position:relative;z-index:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:400;line-height:16px;white-space:nowrap;color:#4f2b0a">Freelance</span>
+    </button>
+  </nav>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:40;display:flex;align-items:flex-end;justify-content:center">
+      <div onClick="{{ closeModal }}" style="position:absolute;inset:0;background:rgba(0,0,0,.3);animation:veilIn .25s ease"></div>
+      <div data-sheet="1" style="position: relative; width: 95%; height: 93vh; box-sizing: border-box; overflow: hidden; background: #fff; border-radius: 8px 8px 0px 0px; box-shadow: inset 0 0 0 1px var(--light-gray); display: flex; flex-direction: column; animation: sheetUp .36s cubic-bezier(.22,.61,.36,1)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px 16px">
+          <span style="font-size:17px;font-weight:700;line-height:1.1;color:#383838">{{ modalTitle }}</span>
+          <button onClick="{{ closeModal }}" style="border:none;border-radius:8px;background:rgba(236,235,235,.8);padding:8px 12px;font-family:Karla,sans-serif;font-size:14px;font-weight:700;color:#4f2b0a;cursor:pointer" style-hover="background:#ecebeb">Close</button>
+        </div>
+        <div style="flex: 1; min-height: 0; margin: 0 20px 20px; border-radius: 0px; overflow: hidden; position: relative; background: #f1efef; box-sizing: border-box">
+          <div style="width: 100%; height: 100%; border-radius: 0px; overflow: hidden; background: #fff">
+            <sc-if value="{{ hasEmbed }}" hint-placeholder-val="{{ false }}">
+              <iframe src="{{ embedUrl }}" title="{{ modalTitle }}" allow="fullscreen" allowFullScreen="{{ true }}" style="width:100%;height:100%;border:1px solid var(--light-gray);box-sizing:border-box;display:block"></iframe>
+            </sc-if>
+            <sc-if value="{{ noEmbed }}" hint-placeholder-val="{{ true }}">
+              <image-slot id="{{ modalSlotId }}" shape="rect" placeholder="Drop the prototype screenshot for this project"></image-slot>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showPeeks&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;peekOpacity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.45,&quot;min&quot;:0.05,&quot;max&quot;:0.6,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;docWidth&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:595,&quot;min&quot;:420,&quot;max&quot;:760,&quot;step&quot;:5,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;patternIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.4,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Pattern&quot;}}">
+const BGS = ["", "assets/journey-orchestration-header.png", "assets/platform-agents-flow.png", "", "", "", ""];
+const TITLES = ["AI-Driven Design System Workflow","Journey Orchestration","Platform Agents","CV","FI Vertical","Themed Color Picker","Design & Illustration"];
+const EMBEDS = {
+  "journey-orchestration": {
+    "case-study": { label: "Case study", url: "https://embed.figma.com/deck/2a4e3xfziLbhLs19IkJnUB?embed-host=share&footer=false" },
+    "prototype": { label: "Prototype", url: "https://embed.figma.com/proto/oXBnfa07yHQwk7PSVbTOPS/New-Canvas-prototype-test--Copy-?embed-host=share&p=f&viewport=-260%2C1362%2C0.02&scaling=scale-down&content-scaling=fixed&node-id=3070-187429&starting-point-node-id=3070%3A187429&page-id=968%3A25696" }
+  }
+};
+const SLUGS = ["agents-repository","journey-orchestration","platform-agents","cv","fi-vertical","themed-color-picker","design-illustration"];
+
+class Component extends DCLogic {
+  state = { index: 3, h: 900, vw: 1280, sy: 0, modal: -1, embed: "" };
+  lastIndex = 3;
+
+  rowRef = (el) => {
+    if (!el) return;
+    this.row = el;
+    requestAnimationFrame(() => { this.measure(); this.applyY(window.scrollY || 0, false); });
+  };
+
+  navRef = (el) => { if (el) this.nav = el; };
+
+  componentDidMount() {
+    this.onKey = (e) => {
+      if (e.key === "Escape") { this.setState({ modal: -1 }); return; }
+      if (this.state.modal >= 0) return;
+      if (e.key === "ArrowLeft") { e.preventDefault(); this.go(-1); }
+      else if (e.key === "ArrowRight") { e.preventDefault(); this.go(1); }
+    };
+    this.onResize = () => { this.measure(); this.centerTab(); };
+    this.onScroll = () => this.applyY(window.scrollY || 0, false);
+    window.addEventListener("keydown", this.onKey);
+    window.addEventListener("resize", this.onResize);
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    requestAnimationFrame(() => this.syncLabels(true));
+    this.measure();
+    this.applyY(window.scrollY || 0, false);
+    this.t = setTimeout(() => { this.measure(); this.applyY(window.scrollY || 0, false); }, 400);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.onKey);
+    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener("scroll", this.onScroll);
+    if (this.mo) this.mo.disconnect();
+    clearTimeout(this.t);
+  }
+
+  componentDidUpdate() {
+    const moved = this.lastIndex !== this.state.index;
+    this.lastIndex = this.state.index;
+    this.applyY(window.scrollY || 0, moved);
+    this.measure();
+    if (this.state.modal >= 0) this.syncSheet();
+  }
+
+  applyY(y, animate) {
+    const track = this.row && this.row.isConnected ? this.row : document.querySelector("[data-track]");
+    if (!track) return;
+    this.row = track;
+    const anim = animate || (this.animUntil ? Date.now() < this.animUntil : false);
+    const n = TITLES.length;
+    const half = (n - 1) / 2;
+    const i = this.state.index;
+    const step = this.step || 615;
+    const padtop = this.state.vw < 1180 ? 196 : 24;
+    const band = Math.max(180, (window.innerHeight || 800) - padtop - 148);
+    const peekOp = String(this.props.peekOpacity ?? 0.45);
+    const vw = this.state.vw;
+    const gap = vw < 780 ? 10 : 20;
+    const tabW = Math.max(104, Math.min(168, vw * 0.16));
+    const selW = Math.max(150, Math.min(300, vw * 0.26));
+    const nav = this.nav && this.nav.isConnected ? this.nav : document.querySelector("nav");
+    this.nav = nav;
+    const prevRel = this.rel || [];
+    const rel = [];
+    for (let k = 0; k < n; k++) {
+      const r = ((k - i + half) % n + n) % n - half;
+      rel.push(r);
+      const p = prevRel[k];
+      const jumped = p === undefined || Math.sign(r) * Math.sign(p) < 0 && Math.abs(r) + Math.abs(p) > half + 1;
+      const el = track.children[k];
+      if (el) {
+        el.style.transition = (anim && !jumped ? "transform .44s cubic-bezier(.22,.61,.36,1), " : "") + "opacity .25s ease, box-shadow .25s ease";
+        el.style.transformOrigin = "center center";
+        const peekH = Math.min(600, band);
+        el.style.maxHeight = r === 0 ? "none" : peekH + "px";
+        el.style.minHeight = r === 0 ? "" : peekH + "px";
+        const oy = r === 0 ? 0 : y + Math.max(0, (band - el.offsetHeight) / 2);
+        el.style.transform = "translateX(" + (r * step) + "px) translateY(" + oy + "px)" + (r === 0 ? "" : " scale(.86)");
+        el.style.opacity = r === 0 ? "1" : peekOp;
+        el.style.zIndex = r === 0 ? "3" : "1";
+        el.style.cursor = r === 0 ? "auto" : "pointer";
+        el.style.userSelect = r === 0 ? "auto" : "none";
+        if (!el.dataset.hoverWired) {
+          el.dataset.hoverWired = "1";
+          el.addEventListener("mouseenter", () => this.hover(el, true));
+          el.addEventListener("mouseleave", () => this.hover(el, false));
+        }
+        this.hover(el, false);
+      }
+      const tab = nav && nav.children[k];
+      if (tab) {
+        const w = r === 0 ? selW : tabW;
+        const c = r === 0 ? 0 : Math.sign(r) * (selW / 2 + Math.abs(r) * gap + (Math.abs(r) - 0.5) * tabW);
+        tab.style.transition = anim && !jumped ? "transform .44s cubic-bezier(.22,.61,.36,1), width .44s cubic-bezier(.22,.61,.36,1), background .2s" : "none";
+        tab.style.width = w + "px";
+        tab.style.transform = "translateX(" + (c - w / 2) + "px)";
+        const frame = tab.querySelector("[data-frame]");
+        if (frame) frame.style.opacity = r === 0 ? "1" : (tab.dataset.hot === "1" ? "0.35" : "0");
+        if (!tab.dataset.hoverWired) {
+          tab.dataset.hoverWired = "1";
+          const paint = (on) => {
+            tab.dataset.hot = on ? "1" : "0";
+            const sel = Number(tab.dataset.i) === this.state.index;
+            const f = tab.querySelector("[data-frame]");
+            const sf = tab.querySelector("[data-surface]");
+            if (f && !sel) f.style.opacity = on ? "0.35" : "0";
+            if (sf) sf.style.background = on && !sel ? "rgba(243,242,242,.9)" : "rgba(236,235,235,.8)";
+          };
+          tab.addEventListener("mouseenter", () => paint(true));
+          tab.addEventListener("mouseleave", () => paint(false));
+        }
+      }
+    }
+    this.rel = rel;
+    track.style.transform = "none";
+    const pat = track.querySelector("[data-pat]");
+    if (pat) pat.style.transform = "translate(0px," + (y - padtop) + "px)";
+  }
+
+  syncSheet() {
+    const sheet = document.querySelector("[data-sheet]");
+    if (!sheet) return;
+    const track = this.row && this.row.isConnected ? this.row : document.querySelector("[data-track]");
+    const art = track && track.children[this.state.index];
+    if (!art) return;
+    const cs = getComputedStyle(art);
+    sheet.style.background = cs.backgroundColor;
+    sheet.style.backgroundImage = cs.backgroundImage;
+    const r = cs.borderTopLeftRadius;
+    sheet.style.borderRadius = r + " " + r + " 0 0";
+    sheet.style.boxShadow = cs.boxShadow;
+    const bw = parseFloat(cs.borderTopWidth) || 0;
+    if (bw > 0 && cs.borderTopStyle !== "none") {
+      sheet.style.border = cs.borderTopWidth + " " + cs.borderTopStyle + " " + cs.borderTopColor;
+    } else {
+      const m = /(rgba?\([^)]+\))/.exec(cs.boxShadow || "");
+      sheet.style.border = m ? "1px solid " + m[1] : "none";
+    }
+  }
+
+  syncLabels(observe) {
+    const track = this.row && this.row.isConnected ? this.row : document.querySelector("[data-track]");
+    const nav = this.nav && this.nav.isConnected ? this.nav : document.querySelector("nav");
+    if (!track || !nav) return;
+    this.row = track; this.nav = nav;
+    for (let k = 0; k < TITLES.length; k++) {
+      const art = track.children[k];
+      const tab = nav.children[k];
+      if (!art || !tab) continue;
+      const title = art.querySelector('[data-field="title"]');
+      const company = art.querySelector('[data-field="company"]');
+      const tt = tab.querySelector('[data-mirror="title"]');
+      const tc = tab.querySelector('[data-mirror="company"]');
+      if (tt && title) tt.textContent = title.textContent.trim();
+      if (tc) {
+        const v = company ? company.textContent.trim() : "";
+        tc.textContent = v;
+        tc.style.display = v ? "" : "none";
+      }
+    }
+    if (observe && !this.mo) {
+      this.mo = new MutationObserver(() => {
+        if (this.syncQ) return;
+        this.syncQ = requestAnimationFrame(() => { this.syncQ = 0; this.syncLabels(false); });
+      });
+      this.mo.observe(track, { subtree: true, characterData: true, childList: true });
+    }
+  }
+
+  hover(el, on) {
+    const active = Number(el.dataset.i) === this.state.index;
+    const base = this.props.peekOpacity ?? 0.45;
+    el.style.opacity = active ? "1" : String(on ? Math.min(1, base + 0.35) : base);
+    el.style.boxShadow = active
+      ? "inset 0 0 0 1px var(--light-gray)"
+      : (on ? "inset 0 0 0 1px #b0701f, 0 8px 26px rgba(0,0,0,.14)" : "inset 0 0 0 1px var(--light-gray)");
+  }
+
+  centerTab() {}
+
+  measure() {
+    const vw = window.innerWidth || 1280;
+    let h = this.state.h;
+    const track = this.row && this.row.isConnected ? this.row : document.querySelector("[data-track]");
+    if (track) {
+      const el = track.children[this.state.index];
+      if (el) {
+        const prevMax = el.style.maxHeight;
+        el.style.maxHeight = "none";
+        const nat = el.scrollHeight || el.offsetHeight;
+        if (nat) h = nat;
+        el.style.maxHeight = prevMax;
+      }
+    }
+    if (vw !== this.state.vw || h !== this.state.h) this.setState({ vw: vw, h: h });
+  }
+
+  go(d) {
+    this.jump(this.state.index + d);
+  }
+
+  jump(n) {
+    const total = TITLES.length;
+    const idx = ((n % total) + total) % total;
+    if (idx === this.state.index) return;
+    this.animUntil = Date.now() + 480;
+    window.scrollTo({ top: 0, behavior: "auto" });
+    this.setState({ index: idx, sy: 0 });
+  }
+
+  renderVals() {
+    const i = this.state.index;
+    const narrow = this.state.vw < 780;
+    const docw = Math.min(this.props.docWidth ?? 595, this.state.vw - 32);
+    const showPeeks = this.props.showPeeks ?? true;
+    const step = showPeeks && !narrow ? docw + 20 : this.state.vw + docw;
+    this.step = step;
+    const set = EMBEDS[SLUGS[this.state.modal]] || null;
+    const embed = set ? (set[this.state.embed] || set[Object.keys(set)[0]]) : null;
+    const vals = {
+      active: String(i),
+      docw: docw + "px",
+      step: step + "px",
+      pat: String(this.props.patternIntensity ?? 0.4),
+      tabgap: narrow ? "10px" : "20px",
+      padtop: this.state.vw < 1180 ? "196px" : "24px",
+      stageH: this.state.h + "px",
+      rowRef: this.rowRef,
+      navRef: this.navRef,
+      prev: () => this.go(-1),
+      next: () => this.go(1),
+      prevOp: "1",
+      nextOp: "1",
+      trackX: "none",
+      patX: "translate(0px," + (-(this.state.vw < 1180 ? 196 : 104)) + "px)",
+      select: (e) => this.jump(Number(e.currentTarget.dataset.i)),
+      pick: (e) => {
+        const k = Number(e.currentTarget.dataset.i);
+        if (k === this.state.index) return;
+        e.preventDefault();
+        this.jump(k);
+      },
+      openModal: (e) => this.setState({ modal: Number(e.currentTarget.dataset.i), embed: e.currentTarget.dataset.embed || "" }),
+      closeModal: () => this.setState({ modal: -1 }),
+      modalOpen: this.state.modal >= 0,
+      modalTitle: TITLES[this.state.modal] ? TITLES[this.state.modal] + (embed ? " · " + embed.label : "") : "",
+      modalSlotId: "modal-" + (SLUGS[this.state.modal] || "none"),
+      hasEmbed: !!embed,
+      noEmbed: this.state.modal >= 0 && !embed,
+      embedUrl: embed ? embed.url : ""
+    };
+    for (let k = 0; k < TITLES.length; k++) {
+      vals["f" + k] = k === i ? "1 0 auto" : "0 0 auto";
+      vals["s" + k] = k === i ? "1" : "0";
+      vals["t" + k] = "translateX(" + ((((k - i + 3) % 7 + 7) % 7 - 3) * step) + "px)";
+    }
+    return vals;
+  }
+}
+</script>
+</body>
+</html>
